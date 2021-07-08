@@ -1,7 +1,7 @@
 {
   "name": "openmusic-api-v2",
   "version": "2.0.0",
-  "description": "",
+  "description": "Open Music API v2",
   "main": "index.js",
   "scripts": {
     "start-prod": "NODE_ENV=production node ./src/server.js",
