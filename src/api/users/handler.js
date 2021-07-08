@@ -4,7 +4,6 @@ class UsersHandler {
   constructor(service, validator) {
     this._service = service;
     this._validator = validator;
-
     this.postUserHandler = this.postUserHandler.bind(this);
     this.getUserByIdHandler = this.getUserByIdHandler.bind(this);
   }
@@ -13,9 +12,7 @@ class UsersHandler {
     try {
       this._validator.validateUserPayload(request.payload);
       const { username, password, fullname } = request.payload;
-
       const userId = await this._service.addUser({ username, password, fullname });
-
       const response = h.response({
         status: 'success',
         message: 'User berhasil ditambahkan',
@@ -35,10 +32,9 @@ class UsersHandler {
         return response;
       }
 
-      // Server ERROR!
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Server sedang error',
       });
       response.code(500);
       console.error(error);
@@ -65,11 +61,9 @@ class UsersHandler {
         response.code(error.statusCode);
         return response;
       }
-
-      // server ERROR!
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Server sedang error',
       });
       response.code(500);
       console.error(error);

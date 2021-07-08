@@ -43,7 +43,7 @@ class SongsHandler {
 
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Server sedang error',
       });
       response.code(500);
       console.error(error);
@@ -83,7 +83,7 @@ class SongsHandler {
 
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Server sedang error',
       });
       response.code(500);
       console.error(error);
@@ -114,7 +114,7 @@ class SongsHandler {
 
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Server sedang error',
       });
       response.code(500);
       console.error(error);
@@ -142,7 +142,7 @@ class SongsHandler {
 
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Server sedang error',
       });
       response.code(500);
       console.error(error);

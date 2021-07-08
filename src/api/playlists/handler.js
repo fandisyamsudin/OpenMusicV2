@@ -19,7 +19,6 @@ class PlaylistsHandler {
       this._validator.validatePostPlaylistPayload(request.payload);
       const { name } = request.payload;
       const { id: credentialId } = request.auth.credentials;
-
       const playlistId = await this._service.addPlaylist({
         name, owner: credentialId,
       });
@@ -45,7 +44,7 @@ class PlaylistsHandler {
 
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Server sedang error',
       });
       response.code(500);
       console.error(error);
@@ -68,10 +67,8 @@ class PlaylistsHandler {
     try {
       const { playlistId } = request.params;
       const { id: credentialId } = request.auth.credentials;
-
       await this._service.verifyPlaylistOwner(playlistId, credentialId);
       await this._service.deletePlaylistById(playlistId);
-
       return {
         status: 'success',
         message: 'Playlist berhasil dihapus',
@@ -88,7 +85,7 @@ class PlaylistsHandler {
 
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Server sedang error',
       });
       response.code(500);
       console.error(error);
@@ -102,11 +99,8 @@ class PlaylistsHandler {
       const { playlistId } = request.params;
       const { songId } = request.payload;
       const { id: credentialId } = request.auth.credentials;
-
       await this._service.verifyPlaylistAccess(playlistId, credentialId);
-
       await this._service.addSongToPlaylist(playlistId, songId);
-
       const response = h.response({
         status: 'success',
         message: 'Lagu berhasil ditambahkan ke playlist',
@@ -125,7 +119,7 @@ class PlaylistsHandler {
 
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Server sedang error',
       });
       response.code(500);
       console.error(error);
@@ -137,9 +131,7 @@ class PlaylistsHandler {
     try {
       const { playlistId } = request.params;
       const { id: credentialId } = request.auth.credentials;
-
       await this._service.verifyPlaylistAccess(playlistId, credentialId);
-
       const songs = await this._service.getSongsFromPlaylist(playlistId);
       return {
         status: 'success',
@@ -159,7 +151,7 @@ class PlaylistsHandler {
 
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Server sedang error',
       });
       response.code(500);
       console.error(error);
@@ -172,7 +164,6 @@ class PlaylistsHandler {
       const { playlistId } = request.params;
       const { songId } = request.payload;
       const { id: credentialId } = request.auth.credentials;
-
       await this._service.verifyPlaylistAccess(playlistId, credentialId);
       await this._service.deleteSongFromPlaylist(playlistId, songId);
 
@@ -192,7 +183,7 @@ class PlaylistsHandler {
 
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Server sedang error',
       });
       response.code(500);
       console.error(error);
@@ -222,7 +213,7 @@ class PlaylistsHandler {
 
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Server sedang error',
       });
       response.code(500);
       console.error(error);
