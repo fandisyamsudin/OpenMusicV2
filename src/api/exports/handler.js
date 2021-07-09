@@ -5,7 +5,6 @@ class ExportsHandler {
     this._service = service;
     this._validator = validator;
     this._playlistsService = playlistsService;
-
     this.postExportSongsHandler = this.postExportSongsHandler.bind(this);
   }
 
@@ -14,16 +13,12 @@ class ExportsHandler {
       this._validator.validateExportSongsPayload(request.payload);
       const { playlistId } = request.params;
       const { id: userId } = request.auth.credentials;
-
       await this._playlistsService.verifyPlaylistAccess(playlistId, userId);
-
       const message = {
         playlistId,
         targetEmail: request.payload.targetEmail,
       };
-
       await this._service.sendMessage('export:songs', JSON.stringify(message));
-
       const response = h.response({
         status: 'success',
         message: 'Permintaan Anda dalam antrean',
@@ -39,7 +34,6 @@ class ExportsHandler {
         response.code(error.statusCode);
         return response;
       }
-
       const response = h.response({
         status: 'error',
         message: 'Server sedang error',
